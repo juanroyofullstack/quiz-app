@@ -1,3 +1,53 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true,
+      "tsx": true
+    },
+    "ecmaVersion": 2018
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "simple-import-sort"
+  ],
+  "extends": [
+    "next/core-web-vitals",
+    "prettier",
+    "prettier/react",
+    "react-app",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+    "rules": {
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/no-submodule-imports": "off",
+      "@typescript-eslint/jsx-no-lambda": "off",
+      "@typescript-eslint/prefer-interface": "off",
+      "@typescript-eslint/interface-name-prefix": "off",
+      "simple-import-sort/sort": "off",
+      "sort-imports": "off",
+      "sort-keys": "off",
+      "@typescript-eslint/explicit-member-accessibility": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-unused-expressions": "warn",
+      "@typescript-eslint/camelcase": "warn",
+      "no-trailing-spaces": "warn",
+      "comma-dangle": "warn",
+      "no-console": "warn",
+      "consistent-return": 2,
+      "indent": [1, 4],
+      "no-else-return": 1,
+      "semi": [1, "always"],
+      "space-unary-ops": 2
+    },
+    "env": {
+      "browser": true,
+      "es6": true
+    }
 }
