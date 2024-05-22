@@ -29,7 +29,6 @@
       "@typescript-eslint/jsx-no-lambda": "off",
       "@typescript-eslint/prefer-interface": "off",
       "@typescript-eslint/interface-name-prefix": "off",
-      "simple-import-sort/sort": "off",
       "sort-imports": "off",
       "sort-keys": "off",
       "@typescript-eslint/explicit-member-accessibility": "warn",
@@ -40,6 +39,19 @@
       "no-trailing-spaces": "warn",
       "comma-dangle": "warn",
       "no-console": "warn",
+      "simple-import-sort/sort":  [
+        "warn",
+        {
+          "groups": [
+            ["^react", "^@?\\w"],
+            ["^(@|components)(/.*|$)"],
+            ["^\\u0000"],
+            ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+            ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+            ["^.+\\.?(css)$"]
+          ]
+        } 
+      ],
       "consistent-return": 2,
       "indent": [1, 4],
       "no-else-return": 1,
