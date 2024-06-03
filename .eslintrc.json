@@ -16,7 +16,6 @@
     "next/core-web-vitals",
     "prettier",
     "prettier/react",
-    "react-app",
     "eslint:recommended",
     "plugin:react/recommended",
     "prettier/@typescript-eslint",
@@ -35,7 +34,7 @@
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-unused-vars": "warn",
       "@typescript-eslint/no-unused-expressions": "warn",
-      "@typescript-eslint/camelcase": "warn",
+      // "@typescript-eslint/camelcase": "warn",
       "no-trailing-spaces": "warn",
       "comma-dangle": "warn",
       "no-console": "warn",
@@ -56,6 +55,7 @@
       "indent": [1, 4],
       "no-else-return": 1,
       "semi": [1, "always"],
+      "semi-style": ["error", "last"],
       "space-unary-ops": 2
     },
     "env": {

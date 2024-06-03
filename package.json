@@ -6,10 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "eslint ./components/** ./pages/** -c .eslintrc.json --fix --ext js,jsx"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run typecheck",
+      "pre-push": "npm run lint && npm run lint:fix && npm run typecheck"
+    }
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
+    "husky": "^9.0.11",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
