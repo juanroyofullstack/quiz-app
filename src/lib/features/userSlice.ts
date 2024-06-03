@@ -1,7 +1,6 @@
-"use client"; //this is a client side component
+"use client";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { AppStore } from "../../lib/store"
 
 interface userState {
   name: string,
@@ -9,26 +8,24 @@ interface userState {
 }
 
 const initialState: userState = {
-  name: "",
-  isLoggedIn: false
+    name: "",
+    isLoggedIn: false
 };
 
 export const userSlice = createSlice({
-  name: "user",
-  initialState,
-  reducers: {
-    login: (state, action: PayloadAction<userState>) => {
-      state = action.payload;
-    },
-    logout: (state) => {
-      state = {
-        name: "",
-        isLoggedIn: false
-      };
-    },
-  },
+    name: "user",
+    initialState,
+    reducers: {
+        login: (state, action: PayloadAction<userState>) => {
+            state = action.payload;
+        },
+        logout: (state) => {
+            state.name = "";
+            state.isLoggedIn = false;
+        }
+    }
 });
 
-export const { login, logout } = userSlice.actions
+export const { login, logout } = userSlice.actions;
 
 export default userSlice.reducer;

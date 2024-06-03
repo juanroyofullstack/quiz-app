@@ -1,13 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
+
 import userSlice from "./features/userSlice";
 
 export const makeStore = () => {
-  return configureStore({
-    reducer: {
-        user: userSlice,
-    }
-  })
-}
+    return configureStore({
+        reducer: {
+            user: userSlice
+        }
+    });
+};
 
 export type AppStore = ReturnType<typeof makeStore>
 
