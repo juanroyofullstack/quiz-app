@@ -4,8 +4,8 @@ import React, { FormEvent } from 'react';
 
 import {
     login
-} from './../../lib/features/userSlice';
-import { useAppDispatch } from './../../lib/hooks';
+} from '@/lib/features/userSlice';
+import { useAppDispatch } from '@/lib/hooks';
 
 export default function Page() {
     const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ export default function Page() {
         const formData = new FormData(event.currentTarget);
         const inputValue = formData.get('name');
 
-        return dispatch(login({ name: inputValue as string, isLoggedIn: true }));
+        return dispatch(login({ name: inputValue, isLoggedIn: true }));
     }
 
     return (

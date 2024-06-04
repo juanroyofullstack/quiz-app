@@ -1,5 +1,3 @@
-"use client";
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface userState {
@@ -16,12 +14,11 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        login: (state, action: PayloadAction<userState>) => {
-            state = action.payload;
+        login: (_, action: PayloadAction<userState>) => {
+            return action.payload;
         },
-        logout: (state) => {
-            state.name = "";
-            state.isLoggedIn = false;
+        logout: () => {
+            return initialState;
         }
     }
 });
