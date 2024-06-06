@@ -12,7 +12,7 @@ export default function Page() {
     const dispatch = useAppDispatch();
     const router = useRouter();
 
-    function onSubmit(event: FormEvent<HTMLFormElement>) {
+    const onSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
@@ -20,7 +20,7 @@ export default function Page() {
 
         dispatch(login({ name: inputValue, isLoggedIn: true }));
         router.push('/game');
-    }
+    };
 
     return (
         <div className="flex min-h-screen items-center justify-center">
