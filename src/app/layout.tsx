@@ -1,4 +1,5 @@
 import React from 'react';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -20,7 +21,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={inter.className}><StoreProvider>{children}</StoreProvider></body>
+            <AppRouterCacheProvider>
+                <body className={inter.className}><StoreProvider>{children}</StoreProvider></body>
+            </AppRouterCacheProvider>
         </html>
     );
 }
