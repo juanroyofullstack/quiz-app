@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { data } from '@/app/lib/data';
+import { Question } from '@/app/components/Question';
+import { useData } from '@/app/lib/hooks/useData';
 
 export default function Page () {
-    useEffect(() => {
-        data();
-    }, []);
-
+    const { data, error, loading } = useData();
     return (
-        <div>test</div>
+        <div className='GameContainer'>
+            {!loading && data.length > 0 && data.map(question => { return <Question key={question.question} questions={question} />;})}
+        </div>
     );
 }
