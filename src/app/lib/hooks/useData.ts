@@ -19,7 +19,7 @@ export interface QuizzApiResponse {
 
 export const useData = () => {
     const [data, setData] = useState<MappedResults[] | []>([]);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
@@ -30,6 +30,9 @@ export const useData = () => {
                     fetch('https://opentdb.com/api.php?amount=10').then((data: any) => {
                         return data.json();
                     }).then(data => {
+                        if(data.response_code === 5) {
+                            return setError('No results');
+                        }
                         return setData(mapQuizzApiResponse(data.results));
                     });
                 } catch(err: any) {
