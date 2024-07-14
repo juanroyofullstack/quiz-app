@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
-type Action = { type: 'increment' | 'decrement' }
+type Action = { type: 'increment' | 'decrement' | 'correct' }
 type Dispatch = (action: Action) => void
-type State = { count: number }
+type State = { count: number, correctAnswers: number }
 type CountProviderProps = { children: React.ReactNode }
 
 const CountStateContext = createContext<
@@ -12,10 +12,13 @@ const CountStateContext = createContext<
 function countReducer(state: State, action: Action) {
     switch (action.type) {
     case 'increment': {
-        return { count: state.count + 1 };
+        return { ...state, count: state.count + 1 };
     }
     case 'decrement': {
-        return { count: state.count - 1 };
+        return { ...state, count: state.count - 1 };
+    }
+    case 'correct': {
+        return { count: state.count + 1, correctAnswers: state.correctAnswers + 1 };
     }
     default: {
         throw new Error(`Unhandled action type: ${action.type}`);
@@ -24,7 +27,7 @@ function countReducer(state: State, action: Action) {
 }
 
 function CountProvider({ children }: CountProviderProps) {
-    const [state, dispatch] = useReducer(countReducer, { count: 0 });
+    const [state, dispatch] = useReducer(countReducer, { count: 0, correctAnswers: 0 });
 
     const value = { state, dispatch };
 
