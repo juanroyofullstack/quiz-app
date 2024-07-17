@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
-type Action = { type: 'increment' | 'decrement' | 'correct' }
+type Action = { type: 'increment' | 'decrement' | 'correct' | 'reset' }
 type Dispatch = (action: Action) => void
 type State = { count: number, correctAnswers: number }
 type CountProviderProps = { children: React.ReactNode }
@@ -19,6 +19,9 @@ function countReducer(state: State, action: Action) {
     }
     case 'correct': {
         return { count: state.count + 1, correctAnswers: state.correctAnswers + 1 };
+    }
+    case 'reset': {
+        return { count: 0, correctAnswers: 0 };
     }
     default: {
         throw new Error(`Unhandled action type: ${action.type}`);
