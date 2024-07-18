@@ -17,12 +17,12 @@ export interface QuizzApiResponse {
     results: Results[],
 }
 
-export const useData = () => {
+export const useData = (reload?: boolean) => {
     const [data, setData] = useState<MappedResults[] | []>([]);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         (
             async function(){
                 try {
@@ -43,7 +43,7 @@ export const useData = () => {
                     setLoading(false);
                 }
             })();
-    }, []);
+    }, [reload]);
 
     return { data, error, loading };
 };
