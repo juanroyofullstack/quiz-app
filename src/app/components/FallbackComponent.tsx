@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Fallback({ errorMessage, refreshOnClick }: { errorMessage: string, refreshOnClick: () => void})  {
+export function Fallback({ errorMessage, refreshOnClick }: { errorMessage: string, refreshOnClick: any})  {
     return (
         <div role="alert">
             <p>Something went wrong: {errorMessage}</p>

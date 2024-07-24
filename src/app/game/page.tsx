@@ -1,25 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Fallback } from '@/app/components/FallbackComponent';
 import { QuestionsContainer } from '@/app/containers/QuestionsContainer';
 import { CountProvider } from '@/app/lib/context/countContext';
 import { useData } from '@/app/lib/hooks/useData';
+import { GameStatus, reloadGame } from '@/lib/features/gameStatusSlice';
+import { useAppDispatch } from '@/lib/hooks';
 
 export default function Page () {
-    const [value, setValue] = useState<boolean>(false);
     const { data, error, loading } = useData();
     const isNotLoadingAndHasData = !loading && data.length > 0;
     const isNotLoadingAndHasError = !loading && error;
-
-    const refresh = ()=>{
-        // re-renders the component
-        setValue(!value);
-    };
+    const dispatch = useAppDispatch();
 
     if(isNotLoadingAndHasError) {
-        return <Fallback errorMessage={'test'} refreshOnClick={refresh}/>;
+        return <Fallback errorMessage={'test'} refreshOnClick={dispatch(reloadGame({ status: GameStatus.IDLE}))}/>;
     }
 
     return (
