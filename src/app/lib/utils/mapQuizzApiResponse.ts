@@ -4,13 +4,11 @@ export interface MappedResults extends Results {
     answers?: string[]
 }
 
-export const mapQuizzApiResponse = (response: MappedResults[] | []): MappedResults[] | [] => {
-    const returnValue = response;
+export const mapQuizzApiResponse = (response: MappedResults[]): MappedResults[] => {
+    if(!response) return [];
 
-    returnValue.map(question => {
-        question.answers = [];
-        return question.answers.push(...question.incorrect_answers, question.correct_answer);
-    });
-
-    return returnValue;
+    return response.map(question => ({
+        ...question,
+        answers: [...question.incorrect_answers, question.correct_answer]
+    }));
 };

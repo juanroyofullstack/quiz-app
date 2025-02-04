@@ -36,8 +36,8 @@ export const useData = () => {
                             return data.json();
                         }).then(data => {
                             if(data.response_code === 5) {
-                            // setError('No results');
-                            // throw new Error ('No results');
+                                setError('No results');
+                                throw new Error ('No results');
                             }
                             return setData(mapQuizzApiResponse(data.results));
                         });
