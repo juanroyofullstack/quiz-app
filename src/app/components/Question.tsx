@@ -10,10 +10,20 @@ export const Question = ({ question }: { key: string, question: MappedResults })
     };
 
     return (
-        <div className='QuestionContainer'>
-            <div className='Question'>{question.question}</div>
-            <div className='Answers'>
-                {question?.answers && question.answers.map((answer) => { return (<div key={answer} onClick={() => { isCorrectAnswer(answer);}}>{answer}</div>);} )}
+        <div className='Question'>
+            <div className='QuestionTitle'>{question.question}</div>
+            <div className='Answers flex flex-col justify-center items-center'>
+                {question?.answers && question.answers.map(
+                    (answer) => {
+                        return (
+                            <div
+                                key={answer}
+                                onClick={() => { isCorrectAnswer(answer);}}
+                                className="p-2 hover:bg-[#b2b2b2] rounded-md">
+                                {answer}
+                            </div>);
+                    }
+                )}
             </div>
         </div>
     );

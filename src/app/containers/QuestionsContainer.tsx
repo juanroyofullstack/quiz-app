@@ -13,11 +13,18 @@ export const QuestionsContainer = ({ questions }: { questions: MappedResults[] }
     const dispatch = useAppDispatch();
 
     if(count === 9) {
-        return (<div><div>End of game, you had {correctAnswers} correct answers <button onClick={() => dispatch(reloadGame({ status: GameStatus.IDLE}))}>try again?</button></div></div>);
+        return (
+            <div className='flex items-center justify-center h-full'>
+                <div>End of game, you had {correctAnswers} correct answers
+                    <button onClick={() => dispatch(reloadGame({ status: GameStatus.IDLE}))}>
+                        try again?
+                    </button>
+                </div>
+            </div>);
     }
 
     return (
-        <div className='QuestionContainer'>
+        <div className='QuestionContainer flex items-center justify-center h-full'>
             <Question key={questions[count].question} question={questions[count]} />
         </div>
     );

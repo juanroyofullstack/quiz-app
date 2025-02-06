@@ -19,7 +19,7 @@ export default function Page() {
         const inputValue = formData.get('name')?.toString() ?? '';
 
         dispatch(login({ name: inputValue, isLoggedIn: true }));
-        return push('/game');
+        push('/game');
     };
 
     return (
