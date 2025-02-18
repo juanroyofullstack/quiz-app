@@ -10,16 +10,16 @@ import { useAppDispatch } from '@/lib/hooks';
 
 export default function Page() {
     const dispatch = useAppDispatch();
-    const { push } = useRouter();
+    const router = useRouter();
 
-    const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
         const inputValue = formData.get('name')?.toString() ?? '';
 
-        dispatch(login({ name: inputValue, isLoggedIn: true }));
-        push('/game');
+        await dispatch(login({ name: inputValue, isLoggedIn: true }));
+        router.push('/game');
     };
 
     return (

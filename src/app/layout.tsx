@@ -20,10 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <AppRouterCacheProvider>
-                <body className={inter.className}><StoreProvider>{children}</StoreProvider></body>
-            </AppRouterCacheProvider>
-        </html>
+        <StoreProvider>
+            <html lang="en">
+                <AppRouterCacheProvider>
+                    <body className={inter.className}>
+                        {children}
+                    </body>
+                </AppRouterCacheProvider>
+            </html>
+        </StoreProvider>
     );
 }

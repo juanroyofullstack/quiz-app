@@ -19,13 +19,13 @@ export const gameStatusSlice = createSlice({
     initialState,
     reducers: {
         startGame: (state, action: PayloadAction<gameState>) => {
-            return { ...state, status: action.payload.status };
+            state.status = action.payload.status;
         },
         reloadGame: (state, action: PayloadAction<gameState>) => {
-            return { ...state, status: action.payload.status };
+            state.status = action.payload.status;
         },
         finishGame: (state, action: PayloadAction<gameState>) => {
-            return { ...state, status: action.payload.status };
+            state.status = action.payload.status;
         }
     }
 });

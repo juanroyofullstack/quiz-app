@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import { Fallback } from '@/app/components/FallbackComponent';
 import { QuestionsContainer } from '@/app/containers/QuestionsContainer';
@@ -16,12 +16,13 @@ export default function Page () {
     const isNotLoadingAndHasData = !loading && data.length > 0;
     const isNotLoadingAndHasError = !loading && error;
     const dispatch = useAppDispatch();
+    const router = useRouter();
 
     useEffect(() => {
         if(!isUserLoggedIn) {
-            redirect('/');
+            router.push('/');
         }
-    }, [isUserLoggedIn]);
+    }, [isUserLoggedIn, router]);
 
     if(isNotLoadingAndHasError) {
         return <Fallback errorMessage={'test'} refreshOnClick={dispatch(reloadGame({ status: GameStatus.IDLE}))}/>;
