@@ -18,11 +18,11 @@ export default function Page () {
     const dispatch = useAppDispatch();
     const router = useRouter();
 
-    useEffect(() => {
-        if(!isUserLoggedIn) {
-            router.push('/');
-        }
-    }, [isUserLoggedIn, router]);
+    // useEffect(() => {
+    //     if(!isUserLoggedIn) {
+    //         router.push('/');
+    //     }
+    // }, [isUserLoggedIn, router]);
 
     if(isNotLoadingAndHasError) {
         return <Fallback errorMessage={'test'} refreshOnClick={() => dispatch(reloadGame())}/>;
