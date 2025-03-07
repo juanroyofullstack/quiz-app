@@ -3,6 +3,8 @@
 import React, { FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { useLocalStorage } from '@/app/lib/hooks/useLocalStorage';
+import type { userState } from '@/lib/features/userSlice';
 import {
     login
 } from '@/lib/features/userSlice';
@@ -11,6 +13,7 @@ import { useAppDispatch } from '@/lib/hooks';
 export default function Page() {
     const dispatch = useAppDispatch();
     const router = useRouter();
+    const [, setValue]: [userState, (value: userState) => void] = useLocalStorage<userState>('game', { name: '', isLoggedIn: false });
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -18,6 +21,7 @@ export default function Page() {
         const formData = new FormData(event.currentTarget);
         const inputValue = formData.get('name')?.toString() ?? '';
         await dispatch(login({ name: inputValue, isLoggedIn: true }));
+        setValue({ name: inputValue, isLoggedIn: true });
         router.push('/game');
     };
 
