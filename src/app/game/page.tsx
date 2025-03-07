@@ -7,7 +7,7 @@ import { Fallback } from '@/app/components/FallbackComponent';
 import { QuestionsContainer } from '@/app/containers/QuestionsContainer';
 import { CountProvider } from '@/app/lib/context/countContext';
 import { useData } from '@/app/lib/hooks/useData';
-import { GameStatus, reloadGame } from '@/lib/features/gameStatusSlice';
+import { reloadGame } from '@/lib/features/gameStatusSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 export default function Page () {
@@ -25,7 +25,7 @@ export default function Page () {
     }, [isUserLoggedIn, router]);
 
     if(isNotLoadingAndHasError) {
-        return <Fallback errorMessage={'test'} refreshOnClick={dispatch(reloadGame({ status: GameStatus.IDLE}))}/>;
+        return <Fallback errorMessage={'test'} refreshOnClick={() => dispatch(reloadGame())}/>;
     }
 
     return (

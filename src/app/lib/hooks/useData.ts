@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { GameStatus } from '@/lib/features/gameStatusSlice';
-import { useAppSelector } from '@/lib/hooks';
+import { failedFethGame,GameStatus, startGame } from '@/lib/features/gameStatusSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import type { MappedResults } from '../utils/mapQuizzApiResponse';
 import { mapQuizzApiResponse } from '../utils/mapQuizzApiResponse';
@@ -24,6 +24,8 @@ export const useData = () => {
     const [data, setData] = useState<MappedResults[] | []>([]);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    const dispatch = useAppDispatch();
+
     const gameState = useAppSelector(state => state.game.status);
 
     useEffect(() => {
@@ -37,19 +39,24 @@ export const useData = () => {
                         }).then(data => {
                             if(data.response_code === 5) {
                                 setError('No results');
-                                // throw new Error ('No results');
+                                setLoading(false);
+                                dispatch(failedFethGame());
                             }
+                            dispatch(startGame());
+
                             return setData(mapQuizzApiResponse(data.results));
                         });
                     } catch(err: any) {
+                        setLoading(false);
                         setError(err);
+                        dispatch(failedFethGame());
                         throw new Error ('No results');
                     } finally {
                         setLoading(false);
                     }
                 })();
         }
-    }, [gameState]);
+    }, [dispatch, gameState]);
 
     return { data, error, loading };
 };

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    runtime: "nodejs"
+    reactStrictMode: true
 };
 
 export default nextConfig;

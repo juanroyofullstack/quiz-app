@@ -17,7 +17,6 @@ export default function Page() {
 
         const formData = new FormData(event.currentTarget);
         const inputValue = formData.get('name')?.toString() ?? '';
-
         await dispatch(login({ name: inputValue, isLoggedIn: true }));
         router.push('/game');
     };
