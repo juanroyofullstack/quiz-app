@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Fallback } from '@/app/components/FallbackComponent';
@@ -26,10 +26,17 @@ export default function Page () {
     const router = useRouter();
     const [, setValue]: [userState, (value: userState) => void] = useLocalStorage<userState>('game', { name: '', isLoggedIn: false }, 'cookie', -1);
 
-    const logOut = async () => {
-        await dispatch(logout());
-        await setValue({ name: '', isLoggedIn: false });
-        await dispatch(reloadGame());
+    useEffect(() => {
+        if(gameState === 'IDLE') {
+            return router.push('/');
+        }
+        return undefined;
+    }, [gameState, router]);
+
+    const logOut = () => {
+        dispatch(logout());
+        dispatch(reloadGame());
+        setValue({ name: '', isLoggedIn: false });
         return router.push('/');
     };
 
@@ -40,7 +47,7 @@ export default function Page () {
         <div className='GameContainer h-full'>
             {isUserLoggedIn && isNotLoadingAndHasData && <button onClick={() => logOut()}>Log Out</button>}
             <CountProvider>
-                {loading && gameState === 'LOADING' && <div>Loading...</div>}
+                {gameState === 'LOADING' && <div>Loading...</div>}
                 {isNotLoadingAndHasData && <QuestionsContainer questions={data}/>}
             </CountProvider>
         </div>
