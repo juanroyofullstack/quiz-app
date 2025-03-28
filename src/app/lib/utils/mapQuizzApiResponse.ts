@@ -1,4 +1,4 @@
-import { Results } from '@/app/lib/hooks/useData';
+import type { Results } from '@/app/lib/hooks/useData';
 
 export interface MappedResults extends Results {
     answers?: string[]

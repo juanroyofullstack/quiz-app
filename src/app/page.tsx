@@ -4,6 +4,7 @@ import React, { FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useLocalStorage } from '@/app/lib/hooks/useLocalStorage';
+import { loadingGame } from '@/lib/features/gameStatusSlice';
 import type { userState } from '@/lib/features/userSlice';
 import {
     login
@@ -21,6 +22,7 @@ export default function Page() {
         const formData = new FormData(event.currentTarget);
         const inputValue = formData.get('name')?.toString() ?? '';
         await dispatch(login({ name: inputValue, isLoggedIn: true }));
+        await dispatch(loadingGame());
         await setValue({ name: inputValue, isLoggedIn: true });
         return router.push('/game');
     };

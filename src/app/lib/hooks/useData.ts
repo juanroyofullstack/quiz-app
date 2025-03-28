@@ -29,11 +29,13 @@ export const useData = () => {
     const gameState = useAppSelector(state => state.game.status);
 
     useEffect(() => {
-        if(gameState === GameStatus.IDLE) {
+        if(gameState === GameStatus.LOADING) {
             (
                 async function(){
                     try {
                         setLoading(true);
+                        setError(null);
+                        setData([]);
                         fetch('https://opentdb.com/api.php?amount=10').then((data: any) => {
                             return data.json();
                         }).then(data => {
