@@ -13,7 +13,7 @@ import { useAppDispatch } from '@/lib/hooks';
 export default function Page() {
     const dispatch = useAppDispatch();
     const router = useRouter();
-    const [, setValue]: [userState, (value: userState) => void] = useLocalStorage<userState>('game', { name: '', isLoggedIn: false });
+    const [, setValue]: [userState, (value: userState) => void] = useLocalStorage<userState>('game', { name: '', isLoggedIn: false }, 'cookie', 7);
 
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -21,8 +21,8 @@ export default function Page() {
         const formData = new FormData(event.currentTarget);
         const inputValue = formData.get('name')?.toString() ?? '';
         await dispatch(login({ name: inputValue, isLoggedIn: true }));
-        setValue({ name: inputValue, isLoggedIn: true });
-        router.push('/game');
+        await setValue({ name: inputValue, isLoggedIn: true });
+        return router.push('/game');
     };
 
     return (
