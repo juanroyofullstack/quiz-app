@@ -6,7 +6,10 @@ import type { MappedResults } from '@/app/lib/utils/mapQuizzApiResponse';
 export const Question = ({ question }: { key: string, question: MappedResults }): JSX.Element => {
     const { dispatch } = useCount();
     const isCorrectAnswer = (answer: string) => {
-        return question.correct_answer === answer ? dispatch({type: 'correct'}) : dispatch({type: 'increment'});
+        return question.correct_answer === answer ? dispatch({type: 'correct', payload: {
+            question: question.question,
+            answer: answer
+        }}) : dispatch({type: 'increment'});
     };
 
     return (
