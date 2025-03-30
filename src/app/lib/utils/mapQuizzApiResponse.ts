@@ -5,7 +5,27 @@ export interface MappedResults extends Results {
 }
 
 const deleteXHTMLcharacters = (str: string): string => {
-    return str.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&amp;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#039;/g, "'").replace(/&euro;/g, '€').replace(/&copy;/g, '©').replace(/&reg;/g, '®').replace(/&trade;/g, '™').replace(/&nbsp;/g, ' ').replace(/&mdash;/g, '—').replace(/&ndash;/g, '–').replace(/&bull;/g, '•').replace(/&hellip;/g, '…').replace(/&lsquo;/g, '‘').replace(/&rsquo;/g, '’').replace(/&laquo;/g, '«').replace(/&raquo;/g, '»');
+    const characterMap: { [key: string]: string } = {
+        '&quot;': '"',
+        '&#039;': "'",
+        '&amp;': '&',
+        '&lt;': '<',
+        '&gt;': '>',
+        '&euro;': '€',
+        '&copy;': '©',
+        '&reg;': '®',
+        '&trade;': '™',
+        '&nbsp;': ' ',
+        '&mdash;': '—',
+        '&ndash;': '–',
+        '&bull;': '•',
+        '&hellip;': '…',
+        '&lsquo;': '‘',
+        '&rsquo;': '’',
+        '&laquo;': '«',
+        '&raquo;': '»'
+    };
+    return str.replace(/&quot;|&#039;|&amp;|&lt;|&gt;|&euro;|&copy;|&reg;|&trade;|&nbsp;|&mdash;|&ndash;|&bull;|&hellip;|&lsquo;|&rsquo;|&laquo;|&raquo;/g, match => characterMap[match] || match);
 };
 
 /**
