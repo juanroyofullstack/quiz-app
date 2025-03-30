@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { failedFethGame,GameStatus, startGame } from '@/lib/features/gameStatusSlice';
+import { failedFethGame, GameStatus, startGame } from '@/lib/features/gameStatusSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import type { MappedResults } from '../utils/mapQuizzApiResponse';

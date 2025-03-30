@@ -43,12 +43,13 @@ export default function Page () {
     if(isNotLoadingAndHasError) {
         return <Fallback errorMessage={'test'} refreshOnClick={() => dispatch(loadingGame())}/>;
     }
+
     return (
         <div className='GameContainer h-full'>
             {isUserLoggedIn && isNotLoadingAndHasData && <button onClick={() => logOut()}>Log Out</button>}
             <CountProvider>
                 {gameState === 'LOADING' && <div>Loading...</div>}
-                {isNotLoadingAndHasData && <QuestionsContainer questions={data}/>}
+                {isNotLoadingAndHasData && gameState === 'IN_PROGRESS' && <QuestionsContainer questions={data}/>}
             </CountProvider>
         </div>
     );
