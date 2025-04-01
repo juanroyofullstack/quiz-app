@@ -13,6 +13,7 @@ export const QuestionsContainer = ({ questions }: { questions: MappedResults[] }
     } = useCount();
     const dispatch = useAppDispatch();
     const correctAnswersCount = correctAnswers?.length || 0;
+
     if(count === 9) {
         return (
             <div className='flex items-center justify-center h-full'>
@@ -31,8 +32,8 @@ export const QuestionsContainer = ({ questions }: { questions: MappedResults[] }
                             </ul>
                         </> : null}
                     <button onClick={() =>{
-                        contextDispatch({ type: 'reset' });
                         dispatch(loadingGame());
+                        contextDispatch({ type: 'reset' });
                     }}>
                         <span className='py-4'>Do you want to play again?</span>
                     </button>

@@ -23,7 +23,7 @@ export interface QuizzApiResponse {
 export const useData = () => {
     const [data, setData] = useState<MappedResults[] | []>([]);
     const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const dispatch = useAppDispatch();
 
     const gameState = useAppSelector(state => state.game.status);
@@ -33,8 +33,8 @@ export const useData = () => {
             (
                 async function(){
                     try {
-                        setLoading(true);
                         setError(null);
+                        setLoading(true);
                         setData([]);
                         fetch('https://opentdb.com/api.php?amount=10').then((data: any) => {
                             return data.json();
@@ -42,19 +42,19 @@ export const useData = () => {
                             if(data.response_code === 5) {
                                 setError('No results');
                                 setLoading(false);
-                                dispatch(failedFethGame());
+                                return dispatch(failedFethGame());
                             }
                             dispatch(startGame());
-
+                            setLoading(false);
                             return setData(mapQuizzApiResponse(data.results));
                         });
                     } catch(err: any) {
-                        setLoading(false);
                         setError(err);
-                        dispatch(failedFethGame());
-                        throw new Error ('No results');
-                    } finally {
                         setLoading(false);
+                        setData([]);
+                        dispatch(failedFethGame());
+                        console.log(err.message);
+                        throw new Error ('No results');
                     }
                 })();
         }

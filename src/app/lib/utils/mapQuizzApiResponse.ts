@@ -40,8 +40,6 @@ export const mapQuizzApiResponse = (response: MappedResults[]): MappedResults[] 
     return response.map(question => ({
         ...question,
         question: deleteXHTMLcharacters(question.question),
-        correct_answer: deleteXHTMLcharacters(question.correct_answer),
-        incorrect_answers: question.incorrect_answers.map(answer => deleteXHTMLcharacters(answer)),
-        answers: [...question.incorrect_answers, question.correct_answer].sort(() => 0.5 - Math.random())
+        answers: [...question.incorrect_answers, question.correct_answer].sort(() => 0.5 - Math.random()).map(answer => deleteXHTMLcharacters(answer))
     }));
 };

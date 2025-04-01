@@ -34,9 +34,9 @@ export default function Page () {
     }, [gameState, router]);
 
     const logOut = () => {
-        dispatch(logout());
-        dispatch(reloadGame());
         setValue({ name: '', isLoggedIn: false });
+        dispatch(reloadGame());
+        dispatch(logout());
         return router.push('/');
     };
 
@@ -48,8 +48,8 @@ export default function Page () {
         <div className='GameContainer h-full'>
             {isUserLoggedIn && isNotLoadingAndHasData && <button onClick={() => logOut()}>Log Out</button>}
             <CountProvider>
-                {gameState === 'LOADING' && <div>Loading...</div>}
-                {isNotLoadingAndHasData && gameState === 'IN_PROGRESS' && <QuestionsContainer questions={data}/>}
+                {loading && <div>Loading...</div>}
+                {isNotLoadingAndHasData && <QuestionsContainer questions={data}/>}
             </CountProvider>
         </div>
     );
