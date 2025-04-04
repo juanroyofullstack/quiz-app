@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { CountDownComponent } from '@/app/components/CountDownComponent';
 import { Fallback } from '@/app/components/FallbackComponent';
 import { QuestionsContainer } from '@/app/containers/QuestionsContainer';
 import { CountProvider } from '@/app/lib/context/countContext';
@@ -19,8 +20,11 @@ export default function Page () {
     const { data, error, loading } = useData();
     const isUserLoggedIn = useAppSelector(state => state.user.isLoggedIn);
     const gameState = useAppSelector(state => state.game.status);
+    const countStatus = useAppSelector(state => state.game.countDownStatus);
 
     const isNotLoadingAndHasData = !loading && data.length > 0;
+    const isNotLoadingHasDataAndCountIsOver = !loading && data.length > 0 && !countStatus;
+
     const isNotLoadingAndHasError = !loading && error;
     const dispatch = useAppDispatch();
     const router = useRouter();
@@ -49,7 +53,9 @@ export default function Page () {
             {isUserLoggedIn && isNotLoadingAndHasData && <button onClick={() => logOut()}>Log Out</button>}
             <CountProvider>
                 {loading && <div>Loading...</div>}
-                {isNotLoadingAndHasData && <QuestionsContainer questions={data}/>}
+                {!loading && data.length > 0 &&
+                 <CountDownComponent count={3} />}
+                {isNotLoadingHasDataAndCountIsOver && <QuestionsContainer questions={data}/>}
             </CountProvider>
         </div>
     );

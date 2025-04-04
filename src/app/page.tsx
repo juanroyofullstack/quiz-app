@@ -38,6 +38,9 @@ export default function Page() {
                 <p className="mt-1 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
             Enter your details to register.
                 </p>
+                <p className="mt-1 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
+            After you enter your details the game will start.
+                </p>
                 <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
                     <div className="mb-4 flex flex-col gap-6">
                         <div className="relative h-11 w-full min-w-[200px]">

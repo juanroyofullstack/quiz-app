@@ -10,10 +10,12 @@ export enum GameStatus {
 
 interface gameState {
   status: GameStatus,
+  countDownStatus: boolean,
 }
 
 const initialState: gameState = {
-    status: GameStatus.IDLE
+    status: GameStatus.IDLE,
+    countDownStatus: false
 };
 
 export const gameStatusSlice = createSlice({
@@ -34,10 +36,16 @@ export const gameStatusSlice = createSlice({
         },
         failedFethGame: (state) => {
             state.status = GameStatus.FAILED_FETCH;
+        },
+        countStatusFinished: (state) => {
+            state.countDownStatus = false;
+        },
+        countStatusStart: (state) => {
+            state.countDownStatus = true;
         }
     }
 });
 
-export const { startGame, loadingGame, reloadGame, finishGame, failedFethGame } = gameStatusSlice.actions;
+export const { startGame, loadingGame, reloadGame, finishGame, countStatusFinished, countStatusStart, failedFethGame } = gameStatusSlice.actions;
 
 export default gameStatusSlice.reducer;
