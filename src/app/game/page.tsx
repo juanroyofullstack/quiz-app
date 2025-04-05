@@ -19,23 +19,19 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 export default function Page () {
     const { data, error, loading } = useData();
     const isUserLoggedIn = useAppSelector(state => state.user.isLoggedIn);
-    const gameState = useAppSelector(state => state.game.status);
     const countStatus = useAppSelector(state => state.game.countDownStatus);
 
     const isNotLoadingAndHasData = !loading && data.length > 0;
     const isNotLoadingHasDataAndCountIsOver = !loading && data.length > 0 && !countStatus;
-
     const isNotLoadingAndHasError = !loading && error;
+
     const dispatch = useAppDispatch();
     const router = useRouter();
     const [, setValue]: [userState, (value: userState) => void] = useLocalStorage<userState>('game', { name: '', isLoggedIn: false }, 'cookie', -1);
 
     useEffect(() => {
-        if(gameState === 'IDLE') {
-            return router.push('/');
-        }
-        return undefined;
-    }, [gameState, router]);
+        dispatch(loadingGame());
+    }, [dispatch]);
 
     const logOut = () => {
         setValue({ name: '', isLoggedIn: false });

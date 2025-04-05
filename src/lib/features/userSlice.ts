@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 export interface userState {
   name: string,
   isLoggedIn: boolean
 }
 
+const cookieObject: userState | undefined = JSON.parse(Cookies.get("game") || "{}");
 const initialState: userState = {
-    name: "",
-    isLoggedIn: false
+    name: cookieObject?.name || "",
+    isLoggedIn: cookieObject?.isLoggedIn || false
 };
 
 export const userSlice = createSlice({

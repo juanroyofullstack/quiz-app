@@ -22,7 +22,7 @@ export default function Page() {
         const formData = new FormData(event.currentTarget);
         const inputName = formData.get('name')?.toString() ?? '';
         dispatch(login({ name: inputName, isLoggedIn: true }));
-        dispatch(loadingGame());
+        // dispatch(loadingGame());
         await setValue({ name: inputName, isLoggedIn: true });
         return router.push(`/game?name=${encodeURIComponent(inputName)}`);
     };
