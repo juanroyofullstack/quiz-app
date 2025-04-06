@@ -10,7 +10,8 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "simple-import-sort"
+    "simple-import-sort",
+    "prettier"
   ],
   "extends": [
     "next/core-web-vitals",
@@ -22,44 +23,53 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-    "rules": {
-      "@typescript-eslint/explicit-function-return-type": "off",
-      "@typescript-eslint/no-submodule-imports": "off",
-      "@typescript-eslint/jsx-no-lambda": "off",
-      "@typescript-eslint/prefer-interface": "off",
-      "@typescript-eslint/interface-name-prefix": "off",
-      "sort-imports": "off",
-      "sort-keys": "off",
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/explicit-member-accessibility": "warn",
-      "@typescript-eslint/no-unused-vars": "warn",
-      "@typescript-eslint/no-unused-expressions": "warn",
-      // "@typescript-eslint/camelcase": "warn",
-      "no-trailing-spaces": "warn",
-      "comma-dangle": "warn",
-      "no-console": "warn",
-      "simple-import-sort/sort":  [
-        "warn",
-        {
-          "groups": [
-            ["^react", "^@?\\w"],
-            ["^(@|components)(/.*|$)"],
-            ["^\\u0000"],
-            ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-            ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
-            ["^.+\\.?(css)$"]
-          ]
-        } 
-      ],
-      "consistent-return": 2,
-      "indent": [1, 4],
-      "no-else-return": 1,
-      "semi": [1, "always"],
-      "semi-style": ["error", "last"],
-      "space-unary-ops": 2
-    },
-    "env": {
-      "browser": true,
-      "es6": true
-    }
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-submodule-imports": "off",
+    "@typescript-eslint/jsx-no-lambda": "off",
+    "@typescript-eslint/prefer-interface": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "sort-imports": "off",
+    "sort-keys": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/explicit-member-accessibility": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-expressions": "warn",
+    "no-trailing-spaces": "warn",
+    "no-console": "warn",
+    "simple-import-sort/sort": [
+      "warn",
+      {
+        "groups": [
+          ["^react", "^@?\\w"],
+          ["^(@|components)(/.*|$)"],
+          ["^\\u0000"],
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          ["^.+\\.?(css)$"]
+        ]
+      }
+    ],
+    "consistent-return": 2,
+    "indent": [1, 4],
+    "no-else-return": 1,
+    "semi": [1, "always"],
+    "semi-style": ["error", "last"],
+    "space-unary-ops": 2,
+    "max-len": ["warn", { "code": 80, "ignoreUrls": true }],
+    "prettier/prettier": [
+      "warn",
+      {
+        "printWidth": 80,
+        "tabWidth": 4,
+        "useTabs": false,
+        "semi": true,
+        "singleQuote": true
+      }
+    ]
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  }
 }
