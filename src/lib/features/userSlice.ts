@@ -1,19 +1,21 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Cookies from "js-cookie";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 
 export interface userState {
-  name: string,
-  isLoggedIn: boolean
+    name: string;
+    isLoggedIn: boolean;
 }
 
-const cookieObject: userState | undefined = JSON.parse(Cookies.get("game") || "{}");
+const cookieObject: userState | undefined = JSON.parse(
+    Cookies.get('game') || '{}',
+);
 const initialState: userState = {
-    name: cookieObject?.name || "",
-    isLoggedIn: cookieObject?.isLoggedIn || false
+    name: cookieObject?.name || '',
+    isLoggedIn: cookieObject?.isLoggedIn || false,
 };
 
 export const userSlice = createSlice({
-    name: "user",
+    name: 'user',
     initialState,
     reducers: {
         login: (state, action: PayloadAction<userState>) => {
@@ -23,8 +25,8 @@ export const userSlice = createSlice({
         },
         logout: () => {
             return initialState;
-        }
-    }
+        },
+    },
 });
 
 export const { login, logout } = userSlice.actions;

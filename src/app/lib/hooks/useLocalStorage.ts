@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 const setCookie = (name: string, value: string, days: number) => {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+    document.cookie =
+        `${name}=${encodeURIComponent(value)}; ` + `expires=${expires}; path=/`;
 };
 
 const getCookie = (name: string): string | null => {
@@ -14,7 +15,7 @@ export const useLocalStorage = <T>(
     key: string,
     defaultValue: T,
     storageType: 'localStorage' | 'cookie' = 'localStorage',
-    cookieDays: number = 7
+    cookieDays: number = 7,
 ): [T, (x: T) => void] => {
     const [storedValue, setStoredValue] = useState<T>(() => {
         try {
@@ -27,7 +28,7 @@ export const useLocalStorage = <T>(
                 return item ? JSON.parse(item) : defaultValue;
             }
             return defaultValue;
-        } catch(error) {
+        } catch (error) {
             return defaultValue;
         }
     });
@@ -35,14 +36,14 @@ export const useLocalStorage = <T>(
     const setValue = (value: T) => {
         try {
             setStoredValue(value);
-            if(storageType === 'localStorage') {
+            if (storageType === 'localStorage') {
                 return window.localStorage.setItem(key, JSON.stringify(value));
             }
             if (storageType === 'cookie') {
                 return setCookie(key, JSON.stringify(value), cookieDays);
             }
             return value;
-        } catch(error) {
+        } catch (error) {
             return value;
         }
     };
