@@ -9,7 +9,11 @@ import { QuestionsContainer } from '@/app/containers/QuestionsContainer';
 import { CountProvider } from '@/app/lib/context/countContext';
 import { useData } from '@/app/lib/hooks/useData';
 import { useLocalStorage } from '@/app/lib/hooks/useLocalStorage';
-import { loadingGame, reloadGame } from '@/lib/features/gameStatusSlice';
+import {
+    GameStatus,
+    loadingGame,
+    reloadGame,
+} from '@/lib/features/gameStatusSlice';
 import type { userState } from '@/lib/features/userSlice';
 import { logout } from '@/lib/features/userSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
@@ -18,10 +22,15 @@ export default function Page() {
     const { data, error, loading } = useData();
     const isUserLoggedIn = useAppSelector((state) => state.user.isLoggedIn);
     const countStatus = useAppSelector((state) => state.game.countDownStatus);
+    const gameState = useAppSelector((state) => state.game.status);
 
-    const isNotLoadingAndHasData = !loading && data.length > 0;
+    const isNotLoadingAndHasData =
+        !loading && data.length > 0 && gameState === GameStatus.IN_PROGRESS;
     const isNotLoadingHasDataAndCountIsOver =
-        !loading && data.length > 0 && !countStatus;
+        !loading &&
+        data.length > 0 &&
+        !countStatus &&
+        gameState === GameStatus.IN_PROGRESS;
     const isNotLoadingAndHasError = !loading && error;
 
     const dispatch = useAppDispatch();

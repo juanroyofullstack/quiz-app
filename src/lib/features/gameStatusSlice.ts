@@ -1,25 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export enum GameStatus {
     IDLE = 'IDLE',
     LOADING = 'LOADING',
     IN_PROGRESS = 'IN_PROGRESS',
     FINISHED = 'FINISHED',
-    FAILED_FETCH = 'FAILED_FETCH'
+    FAILED_FETCH = 'FAILED_FETCH',
 }
 
 interface gameState {
-  status: GameStatus,
-  countDownStatus: boolean,
+    status: GameStatus;
+    countDownStatus: boolean;
 }
 
 const initialState: gameState = {
     status: GameStatus.IDLE,
-    countDownStatus: false
+    countDownStatus: false,
 };
 
 export const gameStatusSlice = createSlice({
-    name: "gameStatus",
+    name: 'gameStatus',
     initialState,
     reducers: {
         reloadGame: (state) => {
@@ -42,10 +42,18 @@ export const gameStatusSlice = createSlice({
         },
         countStatusStart: (state) => {
             state.countDownStatus = true;
-        }
-    }
+        },
+    },
 });
 
-export const { startGame, loadingGame, reloadGame, finishGame, countStatusFinished, countStatusStart, failedFethGame } = gameStatusSlice.actions;
+export const {
+    reloadGame,
+    startGame,
+    loadingGame,
+    finishGame,
+    failedFethGame,
+    countStatusFinished,
+    countStatusStart,
+} = gameStatusSlice.actions;
 
 export default gameStatusSlice.reducer;
