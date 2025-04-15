@@ -1,7 +1,9 @@
-import React, { useCallback, useEffect,useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
-// import { useData } from '@/app/lib/hooks/useData';
-import { countStatusFinished, countStatusStart } from '@/lib/features/gameStatusSlice';
+import {
+    countStatusFinished,
+    countStatusStart,
+} from '@/lib/features/gameStatusSlice';
 import { useAppDispatch } from '@/lib/hooks';
 
 export const CountDownComponent = ({ count }: { count: number }) => {
@@ -20,7 +22,8 @@ export const CountDownComponent = ({ count }: { count: number }) => {
                 }
                 return value - 1;
             });
-        }, 1000);}, [dispatch]);
+        }, 1000);
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(countStatusStart());
@@ -35,7 +38,7 @@ export const CountDownComponent = ({ count }: { count: number }) => {
                         <div className="countdown__number">{countDown}</div>
                     </div>
                 </div>
-            ) : null }
+            ) : null}
         </>
     );
 };

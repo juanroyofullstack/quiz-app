@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
 
 import { useCount } from '@/app/lib/context/countContext';
 import type { MappedResults } from '@/app/lib/utils/mapQuizzApiResponse';
@@ -21,7 +21,7 @@ export const Question = ({
                 payload: {
                     question: question.question,
                     answer: answer,
-                  },
+                },
             })
             : dispatch({ type: 'increment' });
     };
