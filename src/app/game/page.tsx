@@ -64,9 +64,14 @@ export default function Page() {
     }
 
     return (
-        <div className="GameContainer h-full">
+        <div
+            className="GameContainer
+        h-full flex flex-col items-center justify-center w-full pt-16"
+        >
             {isUserLoggedIn && isNotLoadingAndHasData && (
-                <button onClick={() => logOut()}>Log Out</button>
+                <button onClick={() => logOut()} className="self-start">
+                    Log Out
+                </button>
             )}
             <CountProvider>
                 {loading && <div>Loading...</div>}

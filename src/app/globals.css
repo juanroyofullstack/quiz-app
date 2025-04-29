@@ -16,17 +16,14 @@
   }
 }
 html {
-  background: linear-gradient(
-    to bottom,
-    rgb(var(--background-start-rgb)),
-    rgb(var(--background-end-rgb))
-  );
   height: 100%;
 }
+
 body {
   color: rgb(var(--background-start-rgb));
   background: rgb(var(--foreground-rgb));
   height: 100%;
+  display: flex;
 }
 
 @layer utilities {

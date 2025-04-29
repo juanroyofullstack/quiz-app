@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useLocalStorage } from '@/app/lib/hooks/useLocalStorage';
 import type { userState } from '@/lib/features/userSlice';
 
 export default function Page() {
+    const [isMounted, setIsMounted] = useState(false);
     const [cookie]: [userState, (value: userState) => void] =
         useLocalStorage<userState>(
             'game',
@@ -13,12 +14,22 @@ export default function Page() {
             'cookie',
             7,
         );
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
     return (
         <div style={{ padding: '20px' }}>
             <h1>Profile Page</h1>
             <p>Welcome to your profile page!</p>
             {/* Add more profile-related content here */}
-            <div>{cookie.name}</div>
+            {isMounted &&
+                (cookie.isLoggedIn ? (
+                    <p>{cookie.name}</p>
+                ) : (
+                    <p>Not logged in</p>
+                ))}
         </div>
     );
 }

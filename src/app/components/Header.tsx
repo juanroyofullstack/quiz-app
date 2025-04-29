@@ -1,16 +1,16 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Button from '@mui/material/Button';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import { AppBar, Button, Toolbar, Typography } from '@mui/material';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
     return (
-        <AppBar position="static" className="bg-blue-500">
+        <AppBar position="fixed" className="bg-blue-500 flex">
             <Toolbar className="flex justify-between">
-                <Typography variant="h6" className="text-white">
-                    Quiz App
-                </Typography>
+                <Link href="/">
+                    <Typography variant="h6" className="text-white">
+                        Quiz App
+                    </Typography>
+                </Link>
                 <Button
                     href="/profile"
                     variant="text"

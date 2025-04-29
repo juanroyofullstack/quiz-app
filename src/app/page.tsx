@@ -30,7 +30,7 @@ export default function Page() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center">
+        <div className="flex min-h-screen items-center justify-center w-full">
             <div
                 className="
                     relative flex flex-col rounded-xl bg-transparent
