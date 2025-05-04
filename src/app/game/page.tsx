@@ -75,9 +75,7 @@ export default function Page() {
             )}
             <CountProvider>
                 {loading && <div>Loading...</div>}
-                {!loading && data.length > 0 && (
-                    <CountDownComponent count={3} />
-                )}
+                {isNotLoadingAndHasData && <CountDownComponent count={3} />}
                 {isNotLoadingHasDataAndCountIsOver && (
                     <QuestionsContainer questions={data} />
                 )}

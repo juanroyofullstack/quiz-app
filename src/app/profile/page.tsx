@@ -20,7 +20,11 @@ export default function Page() {
     }, []);
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div
+            className="flex flex-col
+            pt-16 h-screen
+            items-center justify-center"
+        >
             <h1>Profile Page</h1>
             <p>Welcome to your profile page!</p>
             {/* Add more profile-related content here */}

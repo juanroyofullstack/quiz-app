@@ -68,6 +68,7 @@ export const QuestionsContainer = ({
             <Question
                 key={questions[count].question}
                 question={questions[count]}
+                count={count}
             />
         </div>
     );

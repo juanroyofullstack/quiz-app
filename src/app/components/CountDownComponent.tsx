@@ -1,9 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import {
-    countStatusFinished,
-    countStatusStart,
-} from '@/lib/features/gameStatusSlice';
+import { countStatusFinished } from '@/lib/features/gameStatusSlice';
 import { useAppDispatch } from '@/lib/hooks';
 
 export const CountDownComponent = ({ count }: { count: number }) => {
@@ -26,9 +23,11 @@ export const CountDownComponent = ({ count }: { count: number }) => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(countStatusStart());
         startCountDown();
-    }, [dispatch, startCountDown]);
+        return () => {
+            setCountDown(count);
+        };
+    }, [dispatch, startCountDown, setCountDown, count]);
 
     return (
         <>

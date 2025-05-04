@@ -5,6 +5,7 @@ import {
     GameStatus,
     startGame,
 } from '@/lib/features/gameStatusSlice';
+import { countStatusStart } from '@/lib/features/gameStatusSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import type { MappedResults } from '../utils/mapQuizzApiResponse';
@@ -50,6 +51,7 @@ export const useData = () => {
                                 return dispatch(failedFethGame());
                             }
                             dispatch(startGame());
+                            dispatch(countStatusStart());
                             setLoading(false);
                             return setData(mapQuizzApiResponse(data.results));
                         });

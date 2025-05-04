@@ -25,7 +25,9 @@ export default function RootLayout({
         <StoreProvider>
             <html lang="en">
                 <AppRouterCacheProvider>
-                    <body className={inter.className}>
+                    <body
+                        className={`${inter.className} flex flex-col h-screen`}
+                    >
                         <Header />
                         {children}
                     </body>

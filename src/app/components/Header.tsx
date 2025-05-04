@@ -11,13 +11,11 @@ const Header: React.FC = () => {
                         Quiz App
                     </Typography>
                 </Link>
-                <Button
-                    href="/profile"
-                    variant="text"
-                    className="text-white hover:bg-blue-700"
-                >
-                    Profile
-                </Button>
+                <Link href="/profile">
+                    <Typography variant="h6" className="text-white">
+                        Profile
+                    </Typography>
+                </Link>
             </Toolbar>
         </AppBar>
     );
